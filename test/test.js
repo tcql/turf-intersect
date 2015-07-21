@@ -32,3 +32,11 @@ test('intersect -- no overlap', function(t){
   t.deepEqual(output, undefined);
   t.end();
 });
+
+test('intersect -- fully contained', function(t){
+  var full = JSON.parse(fs.readFileSync(__dirname+'/fixtures/fully-contained.geojson'));
+  var output = intersect(full[0].geometry, full[1].geometry);
+  t.ok(equal.compare(output, full[0]));
+  t.end();
+});
+
